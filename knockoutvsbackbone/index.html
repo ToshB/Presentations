@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<!--
+  Google HTML5 slide template
+
+  Authors: Luke Mahé (code)
+           Marcin Wichary (code and design)
+           
+           Dominic Mazzoni (browser compatibility)
+           Charles Chen (ChromeVox support)
+
+  URL: http://code.google.com/p/html5slides/
+-->
+<html>
+  <head>
+    <title>
+      Knockout.js vs Backbone.js
+    </title>
+    <meta charset='utf-8'>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
+    <script src="http://html5slides.googlecode.com/svn/trunk/slides.js" type="text/javascript"></script>
+    <link href="css/webstep.css" media="screen" rel="stylesheet" type="text/css">
+    <style>
+      ul+h3 {padding-top:20px;}
+    </style>
+  </head>
+  <body style='display: none'>
+    <section class='slides layout-faux-widescreen template-webstep'>
+      <article>
+        <h1>
+          Knockout.js vs Backbone.js
+        </h1>
+
+        <p>
+          Torstein Bjørnstad<br>
+          28. september 2011
+        </p>
+      </article>
+      <article>
+        <h2>Knockout.js</h2>
+        <ul class="build">
+          <li>Binding av viewmodell til DOM</li>
+          <li>Oppdatering av bindinger ved modell-endringer</li>
+        </ul>
+      </article>
+      <article>
+        <h3>Pros</h3>
+        <ul class="build">
+          <li>Sweet data-mapper</li>
+          <li>Legger ingen føringer på lasting av data</li>
+          <li>Veldig lett å komme igang</li>
+          <li>Mye hjelp å finne online</li>
+        </ul>
+        <h3>Cons</h3>
+        <ul class="build">
+          <li>Lett å få (mye) kode i HTML-attributter</li>
+          <li>Du dupliserer modellene dine</li>
+          <li>Komplekst ved flere modeller på samme side</li>
+          <li>Litt funky notasjon for properties</li>
+        </ul>
+      </article>
+      <article class="build">
+        <h3>Anbefaler hvis..</h3>
+        <p>Du har et statisk view du ønsker å oppdatere med asynkront lastede data</p>
+        <ul>
+          <li>Perfekt for å øke interaktivitet i deler av en allerede eksisterende HTML-applikasjon/webside</li>
+          <li>GET - oppdater - rediger - POST - repeat</li>
+        </ul>
+        <h3>Anbefaler ikke hvis..</h3>
+        <p>Du skal bygge opp mye state, med opptil flere (ulike) datakall og bruker-hendelser</p>
+      </article>
+      <article>
+        <h2>Backbone.js</h2>
+        <ul class="build">
+          <li>"MVC"-rammeverk for klient-side apps</li>
+          <li>Konvensjoner for lasting/lagring av modeller</li>
+          <li>Event-drevet UI</li>
+          <li>View-komposisjon fra URLer (routing)</li>
+        </ul>
+      </article>
+      <article>
+        <h3>Pros</h3>
+        <ul class="build">
+          <li>Modell-synkronisering ut av boksen</li>
+          <li>Validering av modeller</li>
+          <li>Avansert routing</li>
+          <li>Eventing</li>
+          <li>Logikk er samlet på ett sted</li>
+        </ul>
+        <h3>Cons</h3>
+        <ul class="build">
+          <li>Mye man trenger å forstå/lang læringskurve</li>
+          <li>Krever mer JS-kompetanse</li>
+          <li>Ingen databinding (uten plugins)</li>
+          <li>Funky notasjon for get/set av properties</li>
+        </ul>
+      </article>
+      <article class="build">
+        <h3>Anbefaler hvis..</h3>
+        <p>Du skal lage en ny web-applikasjon og har et REST-grensesnitt for dataene
+        <ul>
+          <li>Perfekt for å bygge single-page webapps</li>
+          <li>GET - klikk - GET - klikk - klikk - POST - repeat</li>
+        </ul>
+        <h3>Anbefaler ikke hvis..</h3>
+        <ul>
+          <li>Du jevnlig laster nye HTML-sider (ingen state)</li>
+          <li>APIet ditt ikke er REST-like</li>
+        </ul>
+      </article>
+      <article>
+        <h2>Oppsummering</h2>
+      </article>
+      <article>
+        <h3>Knockout.js</h2>
+        <ul class="build">
+          <li>Forbedring av eksisterende statiske websider</li>
+          <li>Enkle/korte hendelsesforløp (lite state i klienten)</li>
+          <li>Gjerne ASP.NET MVC i bakkant</li>
+          <li>Mye HTML + litt JS</li>
+        </ul>
+      </br>
+        <h3>Backbone.js</h2>
+        <ul class="build">
+          <li>Du kan skrive klienten fra scratch</li>
+          <li>Har flere sider/steg (mye state i klienten)</li>
+          <li>REST-likt API i bunn</li>
+          <li>Klient i ren JS</li>
+        </ul>
+      </article>
+
+    </section>
+  </body>
+</html>
