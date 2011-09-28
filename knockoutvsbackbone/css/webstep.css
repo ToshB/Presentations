@@ -1,0 +1,10 @@
+.slides.template-webstep > article:not(.nobackground):not(.biglogo) {
+        background: url(images/webstep.png) bottom right no-repeat;
+        background-color: white;  
+      }
+
+	p + iframe {
+	  margin-top: 40px;
+	}
+	
+.slides.template-webstep .source{ left: 200px;}
