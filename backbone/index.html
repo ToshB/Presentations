@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<!--
+  Google HTML5 slide template
+
+  Authors: Luke Mahé (code)
+           Marcin Wichary (code and design)
+           
+           Dominic Mazzoni (browser compatibility)
+           Charles Chen (ChromeVox support)
+
+  URL: http://code.google.com/p/html5slides/
+-->
+<html>
+  <head>
+    <title>
+      Backbone.js
+    </title>
+    <meta charset='utf-8'>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
+    <script src="http://html5slides.googlecode.com/svn/trunk/slides.js" type="text/javascript"></script>
+    <link href="css/webstep.css" media="screen" rel="stylesheet" type="text/css">
+    <style>
+      ul+h3 {padding-top:20px;}
+    </style>
+  </head>
+  <body style='display: none'>
+    <section class='slides layout-faux-widescreen template-webstep'>
+      <article>
+        <h1>
+          <img src="images/backbone.png">
+        </h1>
+        <p>
+          Torstein Bjørnstad<br>
+          14. oktober 2011
+        </p>
+      </article>
+      <article>
+                  <img src="images/buildingblocks.jpg" align="right">
+        <h2>Byggeklosser</h2>
+      </article>
+      <article>
+        <h3>Backbone.Model</h3>
+         Utvid Backbone.Model med properties og metoder (domenefunksjonaliteten din), og Backbone gir deg funksjonalitet for å spore og validere endringer, samt restore og lagring av properties.
+        </p>
+        <pre>
+var Banana = Backbone.Model.extend({
+  defaults: {
+    eaten: false;
+  },
+  
+  eat: function() {
+    this.set({eaten: true});
+  },
+  
+  isEaten: function() {
+    return this.get('eaten');
+  }
+});
+</pre>
+      </article>
+      <article>
+        <h3>Backbone.Collection</h3>
+        <p>En liste av modellobjeckter. Backbone gir deg funksjonalitet for å laste en samling av modeller fra serveren, pluss funksjoner på collection-nivå.</br>Har endel Underscore.js-funksjoner for funksjonelle (Linq-style) listeoperasjoner.</p> 
+        <pre>
+var Box = Backbone.Collection.extend({
+  model: Banana
+  
+  getRemaining: function() {
+    return this.models.filter(function(banana){ 
+        return !banana.isEaten();
+    });
+  }
+});
+</pre>
+      </article>
+      <article>
+        <h3>Backbone.Router</h3>
+        <p>Kobler URL'er til "actions", som lar deg initialisere eller restore state. Kan forenkle tilstandshånderingen i applikasjonen din betraktelig.</p>
+        <pre>
+var App = Backbone.Router.extend({
+  routes: {
+    '' :          'index',
+    'banana/:id': 'viewBanana'
+  },
+  
+  index: function() {
+    // display initial view
+  },
+  
+  viewBanana: function(id) {
+    // find banana by id, and initialize view
+  }
+});
+</pre>
+      </article>
+      <article>
+        <h3>Backbone.View</h3>
+        <p>JavaScript-representasjon av et DOM-element. Er typisk knyttet til en modell eller collection, tegner/oppdaterer seg selv, og trigger på events.</p>
+        <pre>
+var FruitBasketView = Backbone.View.extend({
+  tagName: 'ul',
+  initialize: function (){
+      _.bindAll(this, 'render');
+  },
+  render: function() {
+      var views = [];
+      this.collection.each(function(banana){
+          views.push('..');
+      });
+      $(this.el).append(views);
+      return this;
+  }
+});
+</pre>
+      </article>
+      <article>
+        <h2>Konvensjoner</h2>
+                  <img src="images/convention.jpg" align="right">
+      </article>
+      <article>
+        <h3>Backbone.Model</h3>
+        <ul>
+          <li>Properties aksesseres via <code>.get({'prop'})</code> og <code>.set({prop1: val, prop2: val2})</code></li>
+          <li>Defaults settes i <code>defaults</code></li>
+          <li>Ved opprettelse kalles <code>initialize()</code></li>
+          <li>Ved fetch/save/destroy benyttes <code>collection.url eller url()</code></li>
+          <li>Ved save sjekkes <code>isNew()</code>, sjekker default id</li>
+          <li>Etter fetch/save benyttes <code>parse()</code></li>
+          <li>Etter save oppdateres evt modell</li>
+          <li>Ved endringer kalles <code>validate()</code> og fyrer <i>change:<b>prop</b></i></li>
+          <li>Jsonifiser med<code>toJSON()</code></li>
+        </ul>
+      </article>
+      <article>
+        <h3>Backbone.Collection</h3>
+        <ul>
+          <li>Sett modell som <code>model</code></li>
+          <li>Ved opprettelse kalles <code>initialize()</code></li>
+          <li>Ved <code>fetch()</code> brukes <code>url</code></li>
+          <li>Etter <code>fetch()</code> kalles <code>parse</code></li>
+          <li>Jsonifiser med<code>toJSON()</code></li>
+          <li>Der du ville brukt Linq, sjekk Underscoremetoder</li>
+          <li><code>add()</code> og <code>.remove()</code> modell(er)</li>
+          <li></li>
+        </ul>
+      </article>
+      <article>
+        <h3>Backbone.Router</h3>
+        <ul>
+          <li><code>initialize()</code> kalles ved opprettelse (surprise!)</li>
+          <li>Konfigurer routes i <code>routes</code></li>
+          <li>Naviger vha <code>navigate()</code>. Husk parameter nr. 2!</li>
+        </ul>
+      </article>
+      <article>
+        <h3>Backbone.View</h3>
+        <ul>
+          <li><code>initialize()</code>..</li>
+          <li>Referanse til DOM-element kan gettes og settes med <code>el</code></li>
+          <li>Bruk <code>this.$()</code> for scopede jQuer..ies</li>
+          <li><code>render()</code> kalles for rendring. Return <code>this</code>!</li>
+          <li>DOM-events hookes opp med <code>events</code></li>
+          <li>Bind <code>this</code> i eventhandlere med <code>_.bindAll</code></li>
+          <li>Subscribe til modell-events med <code>model.bind('change:eaten', this.render, this)</code></li>
+          <li>Pass inn <code>{model: .., collection: .. }</code> i konstrutor</li>
+        </ul>
+      </article>
+      <article>
+        <h2>Ressurser</h2>
+        <ul>
+          <li><a href="http://documentcloud.github.com/backbone/">Backbone doc</a></li>
+          <li><a href="http://documentcloud.github.com/backbone/docs/backbone.html">Annotated source</a></li>
+          <li><a href="https://github.com/ToshB/JavaScriptIntro/tree/gh-pages/todoApp">Todo list-eksempel</a></li>
+          <li><a href="http://documentcloud.github.com/underscore/">Underscore doc</a></li>
+        </ul>
+      </article>
+    </section>
+  </body>
+</html>
