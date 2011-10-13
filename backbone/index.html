@@ -159,14 +159,28 @@ var FruitBasketView = Backbone.View.extend({
           <li>Referanse til DOM-element kan gettes og settes med <code>el</code></li>
           <li>Bruk <code>this.$()</code> for scopede jQuer..ies</li>
           <li><code>render()</code> kalles for rendring. Return <code>this</code>!</li>
-          <li>DOM-events hookes opp med <code>events</code></li>
+          <li>DOM-events hookes opp med <code>events</code>, return <code>false</code> for å stoppe propagering</li>
           <li>Bind <code>this</code> i eventhandlere med <code>_.bindAll</code></li>
           <li>Subscribe til modell-events med <code>model.bind('change:eaten', this.render, this)</code></li>
           <li>Pass inn <code>{model: .., collection: .. }</code> i konstrutor</li>
+          <li>Typisk et view pr modell/collection, nøsting</li>
         </ul>
       </article>
       <article>
-        <h2>Ressurser</h2>
+        <h2>Diverse</h2>
+      </article>
+      <article>
+        <h3>Debugging tips</h3>
+        <ul>
+          <li>Bruk Chrome eller Firebug</li>
+          <li>Lag breakpoints programmatisk med <code>debugger</code></li>
+          <li>Bruk debuggeren flittig</li>
+          <li>Log output med <code>console.log()</code></li>
+          <li>Log stacktrace med <code>console.trace()</code></li>
+        </ul>
+      </article>
+      <article>
+        <h3>Ressurser</h3>
         <ul>
           <li><a href="http://documentcloud.github.com/backbone/">Backbone doc</a></li>
           <li><a href="http://documentcloud.github.com/backbone/docs/backbone.html">Annotated source</a></li>
