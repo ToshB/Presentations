@@ -160,9 +160,8 @@ var FruitBasketView = Backbone.View.extend({
           <li>Bruk <code>this.$()</code> for scopede jQuer..ies</li>
           <li><code>render()</code> kalles for rendring. Return <code>this</code>!</li>
           <li>DOM-events hookes opp med <code>events</code>, return <code>false</code> for å stoppe propagering</li>
-          <li>Bind <code>this</code> i eventhandlere med <code>_.bindAll</code></li>
-          <li>Subscribe til modell-events med <code>model.bind('change:eaten', this.render, this)</code></li>
-          <li>Pass inn <code>{model: .., collection: .. }</code> i konstrutor</li>
+          <li>Subscribe til modell-events med <code>model.on('change:eaten', this.render, this)</code></li>
+          <li>Pass inn <code>{model: .., collection: .. }</code> i konstruktor</li>
           <li>Typisk et view pr modell/collection, nøsting</li>
         </ul>
       </article>
