@@ -1,0 +1,17 @@
+<html>
+	<head>
+		<title>Consumer Page</title>
+	</head>
+	<body>
+		Normal Content
+	<!-- Normal page content here -->
+	<script>
+		(function (){
+			var script = document.createElement('script'),
+				s = document.getElementsByTagName('script')[0];
+			script.src = "http://provider.dev/loader.js";
+			s.parentNode.insertBefore(script, s);
+		})();
+	</script>
+</body>
+</html>
