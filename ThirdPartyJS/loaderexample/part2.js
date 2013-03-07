@@ -1,1 +1,1 @@
-alert("Script loaded asynchronously!");
+alert("Script loaded!");
